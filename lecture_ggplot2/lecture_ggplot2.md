@@ -47,7 +47,6 @@ github:
   + Scatter plots
 + Advanced Graphing Tips
   + Annotaton
-  + Dealing with timestamp
   + Facet: Multi-plotting
 + Output
 
@@ -87,6 +86,13 @@ github:
         + `geom_bar()`, `geom_line()`, `geom_point()`, ...
 + Example:
     + `ggplot(data=iris, aes(x=Sepal.Length, y=Sepal.Width)) + geom_point()`
+
+---
+
+## Factor or Numeric?
++ Variable class affects `ggplot`'s behavior
++ Variable class affects `ggplot`'s behavior. Twice.
++ Always check your data.frame (use `str`) before calling `ggplot`
 
 --- .segue .nobackground .dark
 
@@ -772,7 +778,7 @@ ggplot(movies1, aes(x=budget, y=rating)) + geom_point(shape=5, size=3)
 ---
 
 ## Scatter plot: Grouping with binary variable
-This usually happens accidentally.
+# This usually happens accidentally.
 
 ```r
 ggplot(movies1, aes(x=budget, y=rating, color=Action)) + geom_point()
@@ -965,8 +971,103 @@ ggplot(yearcount, aes(x=year, y=title)) + geom_line() +
 
 ---
 
-## Dealing with timetamp
-To be compensated
+## Exercise
+# Which type of film cost the most, averagely?
+
+```r
+movietype <- colnames(movies)[18:24]
+movies1_singletype <- movies1[rowSums(movies1[, movietype]) == 1,] # remove multi-typed
+# mean(movies1_singletype[movies1_singletype$Animation == 1, 'budget'])
+lmfit <- lm(as.formula(paste('budget ~', paste(movietype, collapse=' + '))), 
+            movies1_singletype)
+summary(lmfit)$coef # where is type 'Short'?
+```
+
+```
+##             Estimate Std. Error t value  Pr(>|t|)
+## (Intercept)   396133    1715935  0.2309 8.174e-01
+## Action      32302057    2062063 15.6649 7.005e-53
+## Animation   31915319    4157723  7.6762 2.317e-14
+## Comedy      11525837    1888686  6.1026 1.202e-09
+## Drama       10060557    1820528  5.5262 3.604e-08
+## Documentary   333572    2881175  0.1158 9.078e-01
+## Romance      5207555    3713295  1.4024 1.609e-01
+```
+
+---
+
+## Exercise: Try to plot this!
+# What is the association between cost and rating, conditional on type?
+# (This one is tough!)
+<img src="assets/fig/unnamed-chunk-75.png" title="plot of chunk unnamed-chunk-75" alt="plot of chunk unnamed-chunk-75" width="864" style="display: block; margin: auto;" />
+
+---
+
+## Exercise: Hint
+# You need to convert multiple dummies into one factor
++ Before:
+
+```
+##     Action Animation Comedy Drama Documentary Romance Short
+## 22       0         0      0     1           0       0     0
+## 124      0         0      1     0           0       0     0
+## 126      0         0      0     1           0       0     0
+## 139      0         0      0     0           1       0     0
+## 143      0         0      0     1           0       0     0
+## 145      0         0      1     0           0       0     0
+```
++ After:
+
+```
+## [1] Drama       Comedy      Drama       Documentary Drama       Comedy     
+## Levels: Action Animation Comedy Drama Documentary Romance Short
+```
+
+---
+
+## Exercise: Answer
+
+```r
+# convert multiple dummies into one factor as grouping var
+# a little matrix operation will do the trick
+dummies <- as.matrix(movies1_singletype[, movietype])
+movies1_singletype$Type <- factor(dummies %*% (1:length(movietype)), labels=movietype)
+
+# The rest of the task is rather simple
+ggplot(movies1_singletype, aes(x=budget, y=rating, color=Type)) + 
+  geom_point() +
+  
+  # set fullrange=T will extend the fitted line outside the sample range
+  stat_smooth(method=lm, se=FALSE, fullrange=FALSE, size=1.5) +
+  
+  # color is the grouping interface, hence scale_color_*
+  scale_color_discrete(name='Movie Type: # of samples', 
+                       labels=paste(levels(movies1_singletype$Type), ': ', 
+                                    table(movies1_singletype$Type)))
+```
+
+---
+
+## Exercise: The regression problem behind the scene
+
+```r
+interact_terms <- paste(paste(movietype, '*budget', sep=''), collapse=' + ')
+lmfit <- lm(as.formula(paste('rating ~', interact_terms)), movies1_singletype)
+tail(summary(lmfit)$coef)
+```
+
+```
+##                      Estimate Std. Error  t value Pr(>|t|)
+## Action:budget       1.580e-08  3.332e-08  0.47429   0.6353
+## budget:Animation    8.247e-09  3.379e-08  0.24402   0.8072
+## budget:Comedy      -6.222e-10  3.337e-08 -0.01865   0.9851
+## budget:Drama        1.295e-08  3.333e-08  0.38863   0.6976
+## budget:Documentary -8.505e-08  9.010e-08 -0.94389   0.3453
+## budget:Romance     -3.983e-08  4.087e-08 -0.97460   0.3299
+```
++ None of the interactive term is statistically significant, indeed
++ **Visualization != Analysis** (Our eyes were not born to work on numbers.)
++ Plots can be easily manipluated to be misleading, accidentally or **on purpose**
 
 --- .segue .nobackground .dark
 
@@ -974,7 +1075,88 @@ To be compensated
 
 ---
 
-## Facet
+## Facet: Single grouping
+
+```r
+gg <- ggplot(movies1_singletype, aes(x=rating, y=..density..)) + geom_bar()
+gg + facet_grid(Action ~ .) # Plot with grouping variable in different window (Vertical)
+```
+
+<img src="assets/fig/unnamed-chunk-80.png" title="plot of chunk unnamed-chunk-80" alt="plot of chunk unnamed-chunk-80" width="576" style="display: block; margin: auto;" />
+
+---
+
+## Facet: Single grouping
+
+```r
+gg + facet_grid(. ~ Action) 
+```
+
+<img src="assets/fig/unnamed-chunk-81.png" title="plot of chunk unnamed-chunk-81" alt="plot of chunk unnamed-chunk-81" width="576" style="display: block; margin: auto;" />
+
+```r
+# Plot with grouping variable in different window (Horizontal)
+```
+
+---
+
+## Facet: Multiple grouping
+
+```r
+movies1_singletype$modern <- (movies1_singletype$year > 2000)
+ggplot(movies1_singletype, aes(x=rating, y=..density..)) + 
+  geom_bar() + facet_grid(modern ~ Action)
+```
+
+<img src="assets/fig/unnamed-chunk-82.png" title="plot of chunk unnamed-chunk-82" alt="plot of chunk unnamed-chunk-82" width="576" style="display: block; margin: auto;" />
+
+---
+
+## Facet: Multi-layer grouping
+
+```r
+movies1_singletype$rated <- (movies1_singletype$mpaa != '')
+ggplot(movies1_singletype, aes(x=rating, color=modern)) + 
+  geom_line(stat="density") + facet_grid(Type ~ rated)
+```
+
+<img src="assets/fig/unnamed-chunk-83.png" title="plot of chunk unnamed-chunk-83" alt="plot of chunk unnamed-chunk-83" width="576" style="display: block; margin: auto;" />
+
+---
+
+## Facet: Change labels
++ Way 1: Change the grouping var in data.frame to reflect the alternate labels
++ Way 2: Write customized labeller function for `facet_grid`
+
+```r
+print(label_value) # the default labeller plugg in facet_grid(..., labeller)
+```
+
+```
+## function (variable, value) 
+## as.character(value)
+## <environment: namespace:ggplot2>
+```
+
+```r
+mylabeller <- function(variable, value){
+  if ( variable=='rated' ) 
+    value <- ifelse(value == TRUE, 'Rated Movies', 'Unrated Movies')
+  else if ( variable=='Type' ) 
+    as.character(value)
+}
+```
+
+---
+
+## Facet: Change labels
+
+```r
+ggplot(movies1_singletype, aes(x=rating, color=modern)) +
+  geom_line(stat="density") + facet_grid(Type ~ rated, labeller=mylabeller)
+```
+
+<img src="assets/fig/unnamed-chunk-85.png" title="plot of chunk unnamed-chunk-85" alt="plot of chunk unnamed-chunk-85" width="576" style="display: block; margin: auto;" />
 
 ---
 
@@ -993,7 +1175,7 @@ drawPoint <- function(i) {
 drawPoint(25)
 ```
 
-<img src="assets/fig/unnamed-chunk-74.png" title="plot of chunk unnamed-chunk-74" alt="plot of chunk unnamed-chunk-74" width="216" style="display: block; margin: auto;" />
+<img src="assets/fig/unnamed-chunk-86.png" title="plot of chunk unnamed-chunk-86" alt="plot of chunk unnamed-chunk-86" width="216" style="display: block; margin: auto;" />
 
 ---
 
@@ -1006,7 +1188,7 @@ symbols <- do.call(arrangeGrob, symbol_points)
 symbols
 ```
 
-<img src="assets/fig/unnamed-chunk-75.png" title="plot of chunk unnamed-chunk-75" alt="plot of chunk unnamed-chunk-75" width="396" style="display: block; margin: auto;" />
+<img src="assets/fig/unnamed-chunk-87.png" title="plot of chunk unnamed-chunk-87" alt="plot of chunk unnamed-chunk-87" width="396" style="display: block; margin: auto;" />
 
 --- .segue .nobackground .dark
 
@@ -1014,13 +1196,17 @@ symbols
 
 ---
 
-## References
-
-+ [R Graphics Cookbook](http://shop.oreilly.com/product/0636920023135.do)
-
+## Export your plot as external file
++ `?ggsave`
++ That's it. Period.
 
 ---
 
-#ggplot(movies1, aes(x=length)) + geom_bar()
-#ggplot(movies1, aes(x=1L, y=length)) + geom_boxplot()
-#ggplot(movies1, aes(x=factor(Action), y=length)) + geom_boxplot()
+## References
++ [R Graphics Cookbook](http://www.cookbook-r.com/Graphs/)
++ [Source code of this slide](https://github.com/everdark/lecture_ggplot)
+  + The source is tested only on OS X 10.9.3
++ [Introduction to Programming R](https://github.com/everdark/lecture_rintro)
+  + Knowlege of general programming is requisite
+
+

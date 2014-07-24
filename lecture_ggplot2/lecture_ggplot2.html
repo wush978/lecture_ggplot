@@ -103,7 +103,6 @@
 
 <ul>
 <li>Annotaton</li>
-<li>Dealing with timestamp</li>
 <li>Facet: Multi-plotting</li>
 </ul></li>
 <li>Output</li>
@@ -198,7 +197,22 @@
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="segue nobackground dark" id="slide-6" style="background:;">
+<slide class="" id="slide-6" style="background:;">
+  <hgroup>
+    <h2>Factor or Numeric?</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Variable class affects <code>ggplot</code>&#39;s behavior</li>
+<li>Variable class affects <code>ggplot</code>&#39;s behavior. Twice.</li>
+<li>Always check your data.frame (use <code>str</code>) before calling <code>ggplot</code></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="segue nobackground dark" id="slide-7" style="background:;">
   <hgroup>
     <h2>Bar Plot</h2>
   </hgroup>
@@ -208,7 +222,7 @@
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-7" style="background:;">
+<slide class="" id="slide-8" style="background:;">
   <hgroup>
     <h2>Bar Plot: Let&#39;s do this in <code>ggplot2</code>...</h2>
   </hgroup>
@@ -223,7 +237,7 @@ barplot(table(siris$Species))
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-8" style="background:;">
+<slide class="" id="slide-9" style="background:;">
   <hgroup>
     <h2>Bar Plot: Oops, Setosa is missing...</h2>
   </hgroup>
@@ -238,7 +252,7 @@ ggp + geom_bar()
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-9" style="background:;">
+<slide class="" id="slide-10" style="background:;">
   <hgroup>
     <h2>Bar Plot: Force display of x-labels</h2>
   </hgroup>
@@ -253,7 +267,7 @@ ggp + geom_bar()
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-10" style="background:;">
+<slide class="" id="slide-11" style="background:;">
   <hgroup>
     <h2>Bar Plot: Change labels!</h2>
   </hgroup>
@@ -268,7 +282,7 @@ ggp + geom_bar()
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-11" style="background:;">
+<slide class="" id="slide-12" style="background:;">
   <hgroup>
     <h2>Bar Plot: Change colors!</h2>
   </hgroup>
@@ -282,7 +296,7 @@ ggp + geom_bar()
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-12" style="background:;">
+<slide class="" id="slide-13" style="background:;">
   <hgroup>
     <h2>Bar Plot: Stack by group</h2>
   </hgroup>
@@ -297,7 +311,7 @@ ggp_bygrp &lt;- ggplot(siris, aes(x=Species, fill=Fat)); ggp_bygrp + geom_bar()
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-13" style="background:;">
+<slide class="" id="slide-14" style="background:;">
   <hgroup>
     <h2>Bar Plot: Dodge by group</h2>
   </hgroup>
@@ -316,7 +330,7 @@ ggp_bygrp &lt;- ggplot(siris, aes(x=Species, fill=Fat)); ggp_bygrp + geom_bar()
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-14" style="background:;">
+<slide class="" id="slide-15" style="background:;">
   <hgroup>
     <h2>Bar Plot: What if x is continuous...</h2>
   </hgroup>
@@ -330,7 +344,7 @@ ggp_bygrp &lt;- ggplot(siris, aes(x=Species, fill=Fat)); ggp_bygrp + geom_bar()
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-15" style="background:;">
+<slide class="" id="slide-16" style="background:;">
   <hgroup>
     <h2>Overlapping Histogram</h2>
   </hgroup>
@@ -345,7 +359,7 @@ ggp_bygrp &lt;- ggplot(siris, aes(x=Species, fill=Fat)); ggp_bygrp + geom_bar()
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-16" style="background:;">
+<slide class="" id="slide-17" style="background:;">
   <hgroup>
     <h2>Overlapping Density</h2>
   </hgroup>
@@ -360,7 +374,7 @@ ggp_bygrp &lt;- ggplot(siris, aes(x=Species, fill=Fat)); ggp_bygrp + geom_bar()
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-17" style="background:;">
+<slide class="" id="slide-18" style="background:;">
   <hgroup>
     <h2>Overlapping Histogram with Density... Oops!</h2>
   </hgroup>
@@ -375,7 +389,7 @@ ggp_bygrp &lt;- ggplot(siris, aes(x=Species, fill=Fat)); ggp_bygrp + geom_bar()
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-18" style="background:;">
+<slide class="" id="slide-19" style="background:;">
   <hgroup>
     <h2>Overlapping Histogram with Density</h2>
   </hgroup>
@@ -390,7 +404,7 @@ ggp_bygrp &lt;- ggplot(siris, aes(x=Species, fill=Fat)); ggp_bygrp + geom_bar()
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-19" style="background:;">
+<slide class="" id="slide-20" style="background:;">
   <hgroup>
     <h2>Bar Plot: When counts are pre-calculated...</h2>
   </hgroup>
@@ -429,7 +443,7 @@ ggplot(precounted, aes(x=Species, y=Freq)) + geom_bar(stat=&#39;identity&#39;)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-20" style="background:;">
+<slide class="" id="slide-21" style="background:;">
   <hgroup>
     <h2>Bar Plot: More differences...</h2>
   </hgroup>
@@ -463,7 +477,7 @@ ggplot(precounted, aes(x=Species, y=Freq, fill=L)) + geom_bar(stat=&#39;identity
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-21" style="background:;">
+<slide class="" id="slide-22" style="background:;">
   <hgroup>
     <h2>Bar Plot: Reorder x</h2>
   </hgroup>
@@ -478,7 +492,7 @@ ggplot(precounted, aes(x=Species, y=Freq, fill=L)) + geom_bar(stat=&#39;identity
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-22" style="background:;">
+<slide class="" id="slide-23" style="background:;">
   <hgroup>
     <h2>Exercise: Working hours by industry?</h2>
   </hgroup>
@@ -494,7 +508,7 @@ hist(salary_2013$平均工時, main=NULL)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-23" style="background:;">
+<slide class="" id="slide-24" style="background:;">
   <hgroup>
     <h2>Exercise: Try to plot this!</h2>
   </hgroup>
@@ -505,7 +519,7 @@ hist(salary_2013$平均工時, main=NULL)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-24" style="background:;">
+<slide class="" id="slide-25" style="background:;">
   <hgroup>
     <h2>Exercise: Answer</h2>
   </hgroup>
@@ -533,7 +547,7 @@ hist(salary_2013$平均工時, main=NULL)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-25" style="background:;">
+<slide class="" id="slide-26" style="background:;">
   <hgroup>
     <h2>Bar Plot: Proportional stacking (1/4)</h2>
   </hgroup>
@@ -558,7 +572,7 @@ hist(salary_2013$平均工時, main=NULL)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-26" style="background:;">
+<slide class="" id="slide-27" style="background:;">
   <hgroup>
     <h2>Bar Plot: Proportional stacking (2/4)</h2>
   </hgroup>
@@ -584,7 +598,7 @@ hist(salary_2013$平均工時, main=NULL)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-27" style="background:;">
+<slide class="" id="slide-28" style="background:;">
   <hgroup>
     <h2>Bar Plot: Proportional stacking (3/4)</h2>
   </hgroup>
@@ -617,7 +631,7 @@ siris_ag
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-28" style="background:;">
+<slide class="" id="slide-29" style="background:;">
   <hgroup>
     <h2>Bar Plot: Proportional stacking (4/4)</h2>
   </hgroup>
@@ -631,7 +645,7 @@ siris_ag
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-29" style="background:;">
+<slide class="" id="slide-30" style="background:;">
   <hgroup>
     <h2>Bar Plot: Add some texts...(1/2)</h2>
   </hgroup>
@@ -646,7 +660,7 @@ siris_ag
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-30" style="background:;">
+<slide class="" id="slide-31" style="background:;">
   <hgroup>
     <h2>Bar Plot: Add some texts...(2/2)</h2>
   </hgroup>
@@ -663,7 +677,7 @@ ggplot(siris_ag, aes(x=Species, y=Pct, fill=Fat)) + geom_bar(stat=&#39;identity&
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-31" style="background:;">
+<slide class="" id="slide-32" style="background:;">
   <article data-timings="">
     <p style='text-align: center; font-size: 40pt;'>Stop. I'm SICK about bar plot.</p>
 
@@ -678,7 +692,7 @@ ggplot(siris_ag, aes(x=Species, y=Pct, fill=Fat)) + geom_bar(stat=&#39;identity&
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-32" style="background:;">
+<slide class="" id="slide-33" style="background:;">
   <hgroup>
     <h2>A Digress: Function Equivalency</h2>
   </hgroup>
@@ -704,7 +718,7 @@ ggplot(siris_ag, aes(x=Species, y=Pct, fill=Fat)) + geom_bar(stat=&#39;identity&
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="segue nobackground dark" id="slide-33" style="background:;">
+<slide class="segue nobackground dark" id="slide-34" style="background:;">
   <hgroup>
     <h2>Line Graph</h2>
   </hgroup>
@@ -714,7 +728,7 @@ ggplot(siris_ag, aes(x=Species, y=Pct, fill=Fat)) + geom_bar(stat=&#39;identity&
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-34" style="background:;">
+<slide class="" id="slide-35" style="background:;">
   <hgroup>
     <h2>Line Graph</h2>
   </hgroup>
@@ -728,7 +742,7 @@ ggplot(siris_ag, aes(x=Species, y=Pct, fill=Fat)) + geom_bar(stat=&#39;identity&
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-35" style="background:;">
+<slide class="" id="slide-36" style="background:;">
   <article data-timings="">
     <p style='text-align: center; font-size: 40pt;'>AND I am sick about IRIS, too.</p>
 
@@ -743,7 +757,7 @@ ggplot(siris_ag, aes(x=Species, y=Pct, fill=Fat)) + geom_bar(stat=&#39;identity&
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-36" style="background:;">
+<slide class="" id="slide-37" style="background:;">
   <hgroup>
     <h2>Line Graph: Try another sameple data</h2>
   </hgroup>
@@ -772,7 +786,7 @@ str(WorldPhones)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-37" style="background:;">
+<slide class="" id="slide-38" style="background:;">
   <hgroup>
     <h2>Line Graph: Data.frame only, please!</h2>
   </hgroup>
@@ -799,7 +813,7 @@ class(WorldPhones.DF) # this time we should be fine!
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-38" style="background:;">
+<slide class="" id="slide-39" style="background:;">
   <hgroup>
     <h2>Line Graph: What the...?</h2>
   </hgroup>
@@ -813,7 +827,7 @@ class(WorldPhones.DF) # this time we should be fine!
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-39" style="background:;">
+<slide class="" id="slide-40" style="background:;">
   <hgroup>
     <h2>Line Graph: Correct the discrete-x issue</h2>
   </hgroup>
@@ -827,7 +841,7 @@ class(WorldPhones.DF) # this time we should be fine!
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-40" style="background:;">
+<slide class="" id="slide-41" style="background:;">
   <hgroup>
     <h2>Line Graph: Or simply make x continous, if possible</h2>
   </hgroup>
@@ -841,7 +855,7 @@ class(WorldPhones.DF) # this time we should be fine!
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-41" style="background:;">
+<slide class="" id="slide-42" style="background:;">
   <hgroup>
     <h2>Line Graph: Wait a minute...</h2>
   </hgroup>
@@ -860,7 +874,7 @@ class(WorldPhones.DF) # this time we should be fine!
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-42" style="background:;">
+<slide class="" id="slide-43" style="background:;">
   <hgroup>
     <h2>Line Graph: Let&#39;s mark the data points</h2>
   </hgroup>
@@ -879,7 +893,7 @@ class(WorldPhones.DF) # this time we should be fine!
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-43" style="background:;">
+<slide class="" id="slide-44" style="background:;">
   <hgroup>
     <h2>Line Graph: Multi-lining using <code>matplot</code></h2>
   </hgroup>
@@ -894,7 +908,7 @@ legend(&#39;topleft&#39;, legend=colnames(WorldPhones.DF)[1:3], lty=1, col=1:3)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-44" style="background:;">
+<slide class="" id="slide-45" style="background:;">
   <hgroup>
     <h2>Line Graph: Multi-lining</h2>
   </hgroup>
@@ -942,7 +956,7 @@ legend(&#39;topleft&#39;, legend=colnames(WorldPhones.DF)[1:3], lty=1, col=1:3)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-45" style="background:;">
+<slide class="" id="slide-46" style="background:;">
   <hgroup>
     <h2>Line Graph: Wide-to-long conversion</h2>
   </hgroup>
@@ -970,7 +984,7 @@ identical(WP.long$Value, WP.long2$Value)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-46" style="background:;">
+<slide class="" id="slide-47" style="background:;">
   <hgroup>
     <h2>Line Graph: Wide-to-long conversion</h2>
   </hgroup>
@@ -1006,7 +1020,7 @@ identical(WP.long$Value, WP.long2$Value)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-47" style="background:;">
+<slide class="" id="slide-48" style="background:;">
   <hgroup>
     <h2>Line Graph: Or group by linetype</h2>
   </hgroup>
@@ -1020,7 +1034,7 @@ identical(WP.long$Value, WP.long2$Value)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-48" style="background:;">
+<slide class="" id="slide-49" style="background:;">
   <hgroup>
     <h2>Line Graph: Again, beware of categorical x...</h2>
   </hgroup>
@@ -1034,7 +1048,7 @@ identical(WP.long$Value, WP.long2$Value)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-49" style="background:;">
+<slide class="" id="slide-50" style="background:;">
   <hgroup>
     <h2>Line Graph: Reverse order of legend labels</h2>
   </hgroup>
@@ -1049,7 +1063,7 @@ identical(WP.long$Value, WP.long2$Value)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-50" style="background:;">
+<slide class="" id="slide-51" style="background:;">
   <hgroup>
     <h2>Exercise: Real wage trending down...</h2>
   </hgroup>
@@ -1066,7 +1080,7 @@ legend(&#39;bottomright&#39;, c(&#39;Nominal&#39;, &#39;Real&#39;), lty=c(1,1), 
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-51" style="background:;">
+<slide class="" id="slide-52" style="background:;">
   <hgroup>
     <h2>Exercise: Try to plot this!</h2>
   </hgroup>
@@ -1077,7 +1091,7 @@ legend(&#39;bottomright&#39;, c(&#39;Nominal&#39;, &#39;Real&#39;), lty=c(1,1), 
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-52" style="background:;">
+<slide class="" id="slide-53" style="background:;">
   <hgroup>
     <h2>Exercise: Answer</h2>
   </hgroup>
@@ -1103,7 +1117,7 @@ ggplot(tmp, aes(x=Year, y=Value, color=Type)) + # use color as grouping var
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="segue nobackground dark" id="slide-53" style="background:;">
+<slide class="segue nobackground dark" id="slide-54" style="background:;">
   <hgroup>
     <h2>Scatter Plot</h2>
   </hgroup>
@@ -1113,7 +1127,7 @@ ggplot(tmp, aes(x=Year, y=Value, color=Type)) + # use color as grouping var
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-54" style="background:;">
+<slide class="" id="slide-55" style="background:;">
   <hgroup>
     <h2>Scatter plot: IMDB data</h2>
   </hgroup>
@@ -1128,7 +1142,7 @@ ggplot(movies1, aes(x=budget, y=rating)) + geom_point()
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-55" style="background:;">
+<slide class="" id="slide-56" style="background:;">
   <hgroup>
     <h2>Scatter plot: Control the shape &amp; size of points</h2>
   </hgroup>
@@ -1142,7 +1156,7 @@ ggplot(movies1, aes(x=budget, y=rating)) + geom_point()
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-56" style="background:;">
+<slide class="" id="slide-57" style="background:;">
   <hgroup>
     <h2>All point shape types in <code>ggplot2</code></h2>
   </hgroup>
@@ -1153,12 +1167,12 @@ ggplot(movies1, aes(x=budget, y=rating)) + geom_point()
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-57" style="background:;">
+<slide class="" id="slide-58" style="background:;">
   <hgroup>
     <h2>Scatter plot: Grouping with binary variable</h2>
   </hgroup>
   <article data-timings="">
-    <p>This usually happens accidentally.</p>
+    <h1>This usually happens accidentally.</h1>
 
 <pre><code class="r">ggplot(movies1, aes(x=budget, y=rating, color=Action)) + geom_point()
 </code></pre>
@@ -1169,7 +1183,7 @@ ggplot(movies1, aes(x=budget, y=rating)) + geom_point()
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-58" style="background:;">
+<slide class="" id="slide-59" style="background:;">
   <hgroup>
     <h2>Scatter plot: Grouping with categarical variable</h2>
   </hgroup>
@@ -1184,7 +1198,7 @@ ggplot(movies1, aes(x=budget, y=rating)) + geom_point()
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-59" style="background:;">
+<slide class="" id="slide-60" style="background:;">
   <hgroup>
     <h2>Scatter plot: Multi-grouping</h2>
   </hgroup>
@@ -1199,7 +1213,7 @@ ggplot(movies1, aes(x=budget, y=rating)) + geom_point()
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-60" style="background:;">
+<slide class="" id="slide-61" style="background:;">
   <hgroup>
     <h2>Scatter plot: Fit regression line</h2>
   </hgroup>
@@ -1214,7 +1228,7 @@ ggplot(movies1, aes(x=budget, y=rating)) + geom_point()
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-61" style="background:;">
+<slide class="" id="slide-62" style="background:;">
   <hgroup>
     <h2>Scatter plot: The default is polynomial fit</h2>
   </hgroup>
@@ -1228,7 +1242,7 @@ ggplot(movies1, aes(x=budget, y=rating)) + geom_point()
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-62" style="background:;">
+<slide class="" id="slide-63" style="background:;">
   <hgroup>
     <h2>Scatter plot: Fitting is smart to align with grouping</h2>
   </hgroup>
@@ -1243,7 +1257,7 @@ ggplot(movies1, aes(x=budget, y=rating)) + geom_point()
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-63" style="background:;">
+<slide class="" id="slide-64" style="background:;">
   <hgroup>
     <h2>Scatter plot: What if the model is pre-computed?</h2>
   </hgroup>
@@ -1259,7 +1273,7 @@ ggplot(movies1, aes(x=budget, y=rating)) + geom_point() +
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-64" style="background:;">
+<slide class="" id="slide-65" style="background:;">
   <hgroup>
     <h2>Scatter plot: Anotation</h2>
   </hgroup>
@@ -1275,7 +1289,7 @@ ggplot(starmovies, aes(x=votes, y=rating)) + geom_point() + geom_text(aes(label=
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-65" style="background:;">
+<slide class="" id="slide-66" style="background:;">
   <hgroup>
     <h2>Scatter plot: Fine-tune</h2>
   </hgroup>
@@ -1292,7 +1306,7 @@ ggplot(starmovies, aes(x=votes, y=rating)) + geom_point() + geom_text(aes(label=
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="segue nobackground dark" id="slide-66" style="background:;">
+<slide class="segue nobackground dark" id="slide-67" style="background:;">
   <hgroup>
     <h2>Annotation</h2>
   </hgroup>
@@ -1302,7 +1316,7 @@ ggplot(starmovies, aes(x=votes, y=rating)) + geom_point() + geom_text(aes(label=
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-67" style="background:;">
+<slide class="" id="slide-68" style="background:;">
   <hgroup>
     <h2>Annotation</h2>
   </hgroup>
@@ -1319,7 +1333,7 @@ text(x=max(movies1$budget)*.9, y=median(movies1$rating),
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-68" style="background:;">
+<slide class="" id="slide-69" style="background:;">
   <hgroup>
     <h2>Annotation: Add lines</h2>
   </hgroup>
@@ -1336,7 +1350,7 @@ brggp + geom_hline(yintercept=median(movies1$rating)) # ?geom_abline for general
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-69" style="background:;">
+<slide class="" id="slide-70" style="background:;">
   <hgroup>
     <h2>Annotation: Add (single) texts</h2>
   </hgroup>
@@ -1353,7 +1367,7 @@ brggp + geom_hline(yintercept=median(movies1$rating)) # ?geom_abline for general
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-70" style="background:;">
+<slide class="" id="slide-71" style="background:;">
   <hgroup>
     <h2>Annotation: Add segments</h2>
   </hgroup>
@@ -1371,7 +1385,7 @@ brggp + annotate(&#39;segment&#39;, xend=shaw$budget, yend=shaw$rating, x=Inf, y
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-71" style="background:;">
+<slide class="" id="slide-72" style="background:;">
   <hgroup>
     <h2>Annotation: Add shaded area</h2>
   </hgroup>
@@ -1387,7 +1401,7 @@ ggplot(yearcount, aes(x=year, y=title)) + geom_line() +
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-72" style="background:;">
+<slide class="" id="slide-73" style="background:;">
   <hgroup>
     <h2>A Digress: Adjust the x ticks with arbitrary breaks</h2>
   </hgroup>
@@ -1402,7 +1416,7 @@ ggplot(yearcount, aes(x=year, y=title)) + geom_line() +
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-73" style="background:;">
+<slide class="" id="slide-74" style="background:;">
   <hgroup>
     <h2>A Digress: Rotate the x-tick labels</h2>
   </hgroup>
@@ -1418,18 +1432,139 @@ ggplot(yearcount, aes(x=year, y=title)) + geom_line() +
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-74" style="background:;">
+<slide class="" id="slide-75" style="background:;">
   <hgroup>
-    <h2>Dealing with timetamp</h2>
+    <h2>Exercise</h2>
   </hgroup>
   <article data-timings="">
-    <p>To be compensated</p>
+    <h1>Which type of film cost the most, averagely?</h1>
+
+<pre><code class="r">movietype &lt;- colnames(movies)[18:24]
+movies1_singletype &lt;- movies1[rowSums(movies1[, movietype]) == 1,] # remove multi-typed
+# mean(movies1_singletype[movies1_singletype$Animation == 1, &#39;budget&#39;])
+lmfit &lt;- lm(as.formula(paste(&#39;budget ~&#39;, paste(movietype, collapse=&#39; + &#39;))), 
+            movies1_singletype)
+summary(lmfit)$coef # where is type &#39;Short&#39;?
+</code></pre>
+
+<pre><code>##             Estimate Std. Error t value  Pr(&gt;|t|)
+## (Intercept)   396133    1715935  0.2309 8.174e-01
+## Action      32302057    2062063 15.6649 7.005e-53
+## Animation   31915319    4157723  7.6762 2.317e-14
+## Comedy      11525837    1888686  6.1026 1.202e-09
+## Drama       10060557    1820528  5.5262 3.604e-08
+## Documentary   333572    2881175  0.1158 9.078e-01
+## Romance      5207555    3713295  1.4024 1.609e-01
+</code></pre>
 
   </article>
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="segue nobackground dark" id="slide-75" style="background:;">
+<slide class="" id="slide-76" style="background:;">
+  <hgroup>
+    <h2>Exercise: Try to plot this!</h2>
+  </hgroup>
+  <article data-timings="">
+    <h1>What is the association between cost and rating, conditional on type?</h1>
+
+<h1>(This one is tough!)</h1>
+
+<p><img src="assets/fig/unnamed-chunk-75.png" title="plot of chunk unnamed-chunk-75" alt="plot of chunk unnamed-chunk-75" width="864" style="display: block; margin: auto;" /></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-77" style="background:;">
+  <hgroup>
+    <h2>Exercise: Hint</h2>
+  </hgroup>
+  <article data-timings="">
+    <h1>You need to convert multiple dummies into one factor</h1>
+
+<ul>
+<li>Before:</li>
+</ul>
+
+<pre><code>##     Action Animation Comedy Drama Documentary Romance Short
+## 22       0         0      0     1           0       0     0
+## 124      0         0      1     0           0       0     0
+## 126      0         0      0     1           0       0     0
+## 139      0         0      0     0           1       0     0
+## 143      0         0      0     1           0       0     0
+## 145      0         0      1     0           0       0     0
+</code></pre>
+
+<ul>
+<li>After:</li>
+</ul>
+
+<pre><code>## [1] Drama       Comedy      Drama       Documentary Drama       Comedy     
+## Levels: Action Animation Comedy Drama Documentary Romance Short
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-78" style="background:;">
+  <hgroup>
+    <h2>Exercise: Answer</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r"># convert multiple dummies into one factor as grouping var
+# a little matrix operation will do the trick
+dummies &lt;- as.matrix(movies1_singletype[, movietype])
+movies1_singletype$Type &lt;- factor(dummies %*% (1:length(movietype)), labels=movietype)
+
+# The rest of the task is rather simple
+ggplot(movies1_singletype, aes(x=budget, y=rating, color=Type)) + 
+  geom_point() +
+
+  # set fullrange=T will extend the fitted line outside the sample range
+  stat_smooth(method=lm, se=FALSE, fullrange=FALSE, size=1.5) +
+
+  # color is the grouping interface, hence scale_color_*
+  scale_color_discrete(name=&#39;Movie Type: # of samples&#39;, 
+                       labels=paste(levels(movies1_singletype$Type), &#39;: &#39;, 
+                                    table(movies1_singletype$Type)))
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-79" style="background:;">
+  <hgroup>
+    <h2>Exercise: The regression problem behind the scene</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">interact_terms &lt;- paste(paste(movietype, &#39;*budget&#39;, sep=&#39;&#39;), collapse=&#39; + &#39;)
+lmfit &lt;- lm(as.formula(paste(&#39;rating ~&#39;, interact_terms)), movies1_singletype)
+tail(summary(lmfit)$coef)
+</code></pre>
+
+<pre><code>##                      Estimate Std. Error  t value Pr(&gt;|t|)
+## Action:budget       1.580e-08  3.332e-08  0.47429   0.6353
+## budget:Animation    8.247e-09  3.379e-08  0.24402   0.8072
+## budget:Comedy      -6.222e-10  3.337e-08 -0.01865   0.9851
+## budget:Drama        1.295e-08  3.333e-08  0.38863   0.6976
+## budget:Documentary -8.505e-08  9.010e-08 -0.94389   0.3453
+## budget:Romance     -3.983e-08  4.087e-08 -0.97460   0.3299
+</code></pre>
+
+<ul>
+<li>None of the interactive term is statistically significant, indeed</li>
+<li><strong>Visualization != Analysis</strong> (Our eyes were not born to work on numbers.)</li>
+<li>Plots can be easily manipluated to be misleading, accidentally or <strong>on purpose</strong></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="segue nobackground dark" id="slide-80" style="background:;">
   <hgroup>
     <h2>Facet: Multi-plotting</h2>
   </hgroup>
@@ -1439,17 +1574,116 @@ ggplot(yearcount, aes(x=year, y=title)) + geom_line() +
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-76" style="background:;">
+<slide class="" id="slide-81" style="background:;">
   <hgroup>
-    <h2>Facet</h2>
+    <h2>Facet: Single grouping</h2>
   </hgroup>
   <article data-timings="">
-    
+    <pre><code class="r">gg &lt;- ggplot(movies1_singletype, aes(x=rating, y=..density..)) + geom_bar()
+gg + facet_grid(Action ~ .) # Plot with grouping variable in different window (Vertical)
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-80.png" title="plot of chunk unnamed-chunk-80" alt="plot of chunk unnamed-chunk-80" width="576" style="display: block; margin: auto;" /></p>
+
   </article>
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-77" style="background:;">
+<slide class="" id="slide-82" style="background:;">
+  <hgroup>
+    <h2>Facet: Single grouping</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">gg + facet_grid(. ~ Action) 
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-81.png" title="plot of chunk unnamed-chunk-81" alt="plot of chunk unnamed-chunk-81" width="576" style="display: block; margin: auto;" /></p>
+
+<pre><code class="r"># Plot with grouping variable in different window (Horizontal)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-83" style="background:;">
+  <hgroup>
+    <h2>Facet: Multiple grouping</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">movies1_singletype$modern &lt;- (movies1_singletype$year &gt; 2000)
+ggplot(movies1_singletype, aes(x=rating, y=..density..)) + 
+  geom_bar() + facet_grid(modern ~ Action)
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-82.png" title="plot of chunk unnamed-chunk-82" alt="plot of chunk unnamed-chunk-82" width="576" style="display: block; margin: auto;" /></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-84" style="background:;">
+  <hgroup>
+    <h2>Facet: Multi-layer grouping</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">movies1_singletype$rated &lt;- (movies1_singletype$mpaa != &#39;&#39;)
+ggplot(movies1_singletype, aes(x=rating, color=modern)) + 
+  geom_line(stat=&quot;density&quot;) + facet_grid(Type ~ rated)
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-83.png" title="plot of chunk unnamed-chunk-83" alt="plot of chunk unnamed-chunk-83" width="576" style="display: block; margin: auto;" /></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-85" style="background:;">
+  <hgroup>
+    <h2>Facet: Change labels</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Way 1: Change the grouping var in data.frame to reflect the alternate labels</li>
+<li>Way 2: Write customized labeller function for <code>facet_grid</code></li>
+</ul>
+
+<pre><code class="r">print(label_value) # the default labeller plugg in facet_grid(..., labeller)
+</code></pre>
+
+<pre><code>## function (variable, value) 
+## as.character(value)
+## &lt;environment: namespace:ggplot2&gt;
+</code></pre>
+
+<pre><code class="r">mylabeller &lt;- function(variable, value){
+  if ( variable==&#39;rated&#39; ) 
+    value &lt;- ifelse(value == TRUE, &#39;Rated Movies&#39;, &#39;Unrated Movies&#39;)
+  else if ( variable==&#39;Type&#39; ) 
+    as.character(value)
+}
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-86" style="background:;">
+  <hgroup>
+    <h2>Facet: Change labels</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">ggplot(movies1_singletype, aes(x=rating, color=modern)) +
+  geom_line(stat=&quot;density&quot;) + facet_grid(Type ~ rated, labeller=mylabeller)
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-85.png" title="plot of chunk unnamed-chunk-85" alt="plot of chunk unnamed-chunk-85" width="576" style="display: block; margin: auto;" /></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-87" style="background:;">
   <hgroup>
     <h2>Multi-plotting by <code>gridExtra</code> (1/2)</h2>
   </hgroup>
@@ -1465,13 +1699,13 @@ drawPoint &lt;- function(i) {
 drawPoint(25)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-74.png" title="plot of chunk unnamed-chunk-74" alt="plot of chunk unnamed-chunk-74" width="216" style="display: block; margin: auto;" /></p>
+<p><img src="assets/fig/unnamed-chunk-86.png" title="plot of chunk unnamed-chunk-86" alt="plot of chunk unnamed-chunk-86" width="216" style="display: block; margin: auto;" /></p>
 
   </article>
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-78" style="background:;">
+<slide class="" id="slide-88" style="background:;">
   <hgroup>
     <h2>Multi-plotting by <code>gridExtra</code> (2/2)</h2>
   </hgroup>
@@ -1481,13 +1715,13 @@ symbols &lt;- do.call(arrangeGrob, symbol_points)
 symbols
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-75.png" title="plot of chunk unnamed-chunk-75" alt="plot of chunk unnamed-chunk-75" width="396" style="display: block; margin: auto;" /></p>
+<p><img src="assets/fig/unnamed-chunk-87.png" title="plot of chunk unnamed-chunk-87" alt="plot of chunk unnamed-chunk-87" width="396" style="display: block; margin: auto;" /></p>
 
   </article>
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="segue nobackground dark" id="slide-79" style="background:;">
+<slide class="segue nobackground dark" id="slide-89" style="background:;">
   <hgroup>
     <h2>Output</h2>
   </hgroup>
@@ -1497,24 +1731,38 @@ symbols
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-80" style="background:;">
+<slide class="" id="slide-90" style="background:;">
   <hgroup>
-    <h2>References</h2>
+    <h2>Export your plot as external file</h2>
   </hgroup>
   <article data-timings="">
     <ul>
-<li><a href="http://shop.oreilly.com/product/0636920023135.do">R Graphics Cookbook</a></li>
+<li><code>?ggsave</code></li>
+<li>That&#39;s it. Period.</li>
 </ul>
 
   </article>
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-81" style="background:;">
+<slide class="" id="slide-91" style="background:;">
+  <hgroup>
+    <h2>References</h2>
+  </hgroup>
   <article data-timings="">
-    <p>#ggplot(movies1, aes(x=length)) + geom_bar()
-#ggplot(movies1, aes(x=1L, y=length)) + geom_boxplot()
-#ggplot(movies1, aes(x=factor(Action), y=length)) + geom_boxplot()</p>
+    <ul>
+<li><a href="http://www.cookbook-r.com/Graphs/">R Graphics Cookbook</a></li>
+<li><a href="https://github.com/everdark/lecture_ggplot">Source code of this slide</a>
+
+<ul>
+<li>The source is tested only on OS X 10.9.3</li>
+</ul></li>
+<li><a href="https://github.com/everdark/lecture_rintro">Introduction to Programming R</a>
+
+<ul>
+<li>Knowlege of general programming is requisite</li>
+</ul></li>
+</ul>
 
   </article>
   <!-- Presenter Notes -->
@@ -1556,169 +1804,169 @@ symbols
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=6 title='Bar Plot'>
+        data-slide=6 title='Factor or Numeric?'>
          6
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=7 title='Bar Plot: Let&#39;s do this in <code>ggplot2</code>...'>
+        data-slide=7 title='Bar Plot'>
          7
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=8 title='Bar Plot: Oops, Setosa is missing...'>
+        data-slide=8 title='Bar Plot: Let&#39;s do this in <code>ggplot2</code>...'>
          8
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=9 title='Bar Plot: Force display of x-labels'>
+        data-slide=9 title='Bar Plot: Oops, Setosa is missing...'>
          9
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=10 title='Bar Plot: Change labels!'>
+        data-slide=10 title='Bar Plot: Force display of x-labels'>
          10
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=11 title='Bar Plot: Change colors!'>
+        data-slide=11 title='Bar Plot: Change labels!'>
          11
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=12 title='Bar Plot: Stack by group'>
+        data-slide=12 title='Bar Plot: Change colors!'>
          12
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=13 title='Bar Plot: Dodge by group'>
+        data-slide=13 title='Bar Plot: Stack by group'>
          13
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=14 title='Bar Plot: What if x is continuous...'>
+        data-slide=14 title='Bar Plot: Dodge by group'>
          14
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=15 title='Overlapping Histogram'>
+        data-slide=15 title='Bar Plot: What if x is continuous...'>
          15
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=16 title='Overlapping Density'>
+        data-slide=16 title='Overlapping Histogram'>
          16
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=17 title='Overlapping Histogram with Density... Oops!'>
+        data-slide=17 title='Overlapping Density'>
          17
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=18 title='Overlapping Histogram with Density'>
+        data-slide=18 title='Overlapping Histogram with Density... Oops!'>
          18
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=19 title='Bar Plot: When counts are pre-calculated...'>
+        data-slide=19 title='Overlapping Histogram with Density'>
          19
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=20 title='Bar Plot: More differences...'>
+        data-slide=20 title='Bar Plot: When counts are pre-calculated...'>
          20
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=21 title='Bar Plot: Reorder x'>
+        data-slide=21 title='Bar Plot: More differences...'>
          21
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=22 title='Exercise: Working hours by industry?'>
+        data-slide=22 title='Bar Plot: Reorder x'>
          22
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=23 title='Exercise: Try to plot this!'>
+        data-slide=23 title='Exercise: Working hours by industry?'>
          23
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=24 title='Exercise: Answer'>
+        data-slide=24 title='Exercise: Try to plot this!'>
          24
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=25 title='Bar Plot: Proportional stacking (1/4)'>
+        data-slide=25 title='Exercise: Answer'>
          25
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=26 title='Bar Plot: Proportional stacking (2/4)'>
+        data-slide=26 title='Bar Plot: Proportional stacking (1/4)'>
          26
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=27 title='Bar Plot: Proportional stacking (3/4)'>
+        data-slide=27 title='Bar Plot: Proportional stacking (2/4)'>
          27
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=28 title='Bar Plot: Proportional stacking (4/4)'>
+        data-slide=28 title='Bar Plot: Proportional stacking (3/4)'>
          28
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=29 title='Bar Plot: Add some texts...(1/2)'>
+        data-slide=29 title='Bar Plot: Proportional stacking (4/4)'>
          29
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=30 title='Bar Plot: Add some texts...(2/2)'>
+        data-slide=30 title='Bar Plot: Add some texts...(1/2)'>
          30
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=31 title=''>
+        data-slide=31 title='Bar Plot: Add some texts...(2/2)'>
          31
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=32 title='A Digress: Function Equivalency'>
+        data-slide=32 title=''>
          32
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=33 title='Line Graph'>
+        data-slide=33 title='A Digress: Function Equivalency'>
          33
       </a>
     </li>
@@ -1730,67 +1978,67 @@ symbols
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=35 title=''>
+        data-slide=35 title='Line Graph'>
          35
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=36 title='Line Graph: Try another sameple data'>
+        data-slide=36 title=''>
          36
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=37 title='Line Graph: Data.frame only, please!'>
+        data-slide=37 title='Line Graph: Try another sameple data'>
          37
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=38 title='Line Graph: What the...?'>
+        data-slide=38 title='Line Graph: Data.frame only, please!'>
          38
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=39 title='Line Graph: Correct the discrete-x issue'>
+        data-slide=39 title='Line Graph: What the...?'>
          39
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=40 title='Line Graph: Or simply make x continous, if possible'>
+        data-slide=40 title='Line Graph: Correct the discrete-x issue'>
          40
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=41 title='Line Graph: Wait a minute...'>
+        data-slide=41 title='Line Graph: Or simply make x continous, if possible'>
          41
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=42 title='Line Graph: Let&#39;s mark the data points'>
+        data-slide=42 title='Line Graph: Wait a minute...'>
          42
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=43 title='Line Graph: Multi-lining using <code>matplot</code>'>
+        data-slide=43 title='Line Graph: Let&#39;s mark the data points'>
          43
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=44 title='Line Graph: Multi-lining'>
+        data-slide=44 title='Line Graph: Multi-lining using <code>matplot</code>'>
          44
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=45 title='Line Graph: Wide-to-long conversion'>
+        data-slide=45 title='Line Graph: Multi-lining'>
          45
       </a>
     </li>
@@ -1802,121 +2050,121 @@ symbols
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=47 title='Line Graph: Or group by linetype'>
+        data-slide=47 title='Line Graph: Wide-to-long conversion'>
          47
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=48 title='Line Graph: Again, beware of categorical x...'>
+        data-slide=48 title='Line Graph: Or group by linetype'>
          48
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=49 title='Line Graph: Reverse order of legend labels'>
+        data-slide=49 title='Line Graph: Again, beware of categorical x...'>
          49
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=50 title='Exercise: Real wage trending down...'>
+        data-slide=50 title='Line Graph: Reverse order of legend labels'>
          50
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=51 title='Exercise: Try to plot this!'>
+        data-slide=51 title='Exercise: Real wage trending down...'>
          51
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=52 title='Exercise: Answer'>
+        data-slide=52 title='Exercise: Try to plot this!'>
          52
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=53 title='Scatter Plot'>
+        data-slide=53 title='Exercise: Answer'>
          53
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=54 title='Scatter plot: IMDB data'>
+        data-slide=54 title='Scatter Plot'>
          54
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=55 title='Scatter plot: Control the shape &amp; size of points'>
+        data-slide=55 title='Scatter plot: IMDB data'>
          55
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=56 title='All point shape types in <code>ggplot2</code>'>
+        data-slide=56 title='Scatter plot: Control the shape &amp; size of points'>
          56
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=57 title='Scatter plot: Grouping with binary variable'>
+        data-slide=57 title='All point shape types in <code>ggplot2</code>'>
          57
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=58 title='Scatter plot: Grouping with categarical variable'>
+        data-slide=58 title='Scatter plot: Grouping with binary variable'>
          58
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=59 title='Scatter plot: Multi-grouping'>
+        data-slide=59 title='Scatter plot: Grouping with categarical variable'>
          59
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=60 title='Scatter plot: Fit regression line'>
+        data-slide=60 title='Scatter plot: Multi-grouping'>
          60
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=61 title='Scatter plot: The default is polynomial fit'>
+        data-slide=61 title='Scatter plot: Fit regression line'>
          61
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=62 title='Scatter plot: Fitting is smart to align with grouping'>
+        data-slide=62 title='Scatter plot: The default is polynomial fit'>
          62
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=63 title='Scatter plot: What if the model is pre-computed?'>
+        data-slide=63 title='Scatter plot: Fitting is smart to align with grouping'>
          63
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=64 title='Scatter plot: Anotation'>
+        data-slide=64 title='Scatter plot: What if the model is pre-computed?'>
          64
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=65 title='Scatter plot: Fine-tune'>
+        data-slide=65 title='Scatter plot: Anotation'>
          65
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=66 title='Annotation'>
+        data-slide=66 title='Scatter plot: Fine-tune'>
          66
       </a>
     </li>
@@ -1928,86 +2176,146 @@ symbols
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=68 title='Annotation: Add lines'>
+        data-slide=68 title='Annotation'>
          68
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=69 title='Annotation: Add (single) texts'>
+        data-slide=69 title='Annotation: Add lines'>
          69
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=70 title='Annotation: Add segments'>
+        data-slide=70 title='Annotation: Add (single) texts'>
          70
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=71 title='Annotation: Add shaded area'>
+        data-slide=71 title='Annotation: Add segments'>
          71
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=72 title='A Digress: Adjust the x ticks with arbitrary breaks'>
+        data-slide=72 title='Annotation: Add shaded area'>
          72
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=73 title='A Digress: Rotate the x-tick labels'>
+        data-slide=73 title='A Digress: Adjust the x ticks with arbitrary breaks'>
          73
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=74 title='Dealing with timetamp'>
+        data-slide=74 title='A Digress: Rotate the x-tick labels'>
          74
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=75 title='Facet: Multi-plotting'>
+        data-slide=75 title='Exercise'>
          75
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=76 title='Facet'>
+        data-slide=76 title='Exercise: Try to plot this!'>
          76
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=77 title='Multi-plotting by <code>gridExtra</code> (1/2)'>
+        data-slide=77 title='Exercise: Hint'>
          77
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=78 title='Multi-plotting by <code>gridExtra</code> (2/2)'>
+        data-slide=78 title='Exercise: Answer'>
          78
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=79 title='Output'>
+        data-slide=79 title='Exercise: The regression problem behind the scene'>
          79
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=80 title='References'>
+        data-slide=80 title='Facet: Multi-plotting'>
          80
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=81 title=''>
+        data-slide=81 title='Facet: Single grouping'>
          81
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=82 title='Facet: Single grouping'>
+         82
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=83 title='Facet: Multiple grouping'>
+         83
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=84 title='Facet: Multi-layer grouping'>
+         84
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=85 title='Facet: Change labels'>
+         85
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=86 title='Facet: Change labels'>
+         86
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=87 title='Multi-plotting by <code>gridExtra</code> (1/2)'>
+         87
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=88 title='Multi-plotting by <code>gridExtra</code> (2/2)'>
+         88
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=89 title='Output'>
+         89
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=90 title='Export your plot as external file'>
+         90
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=91 title='References'>
+         91
       </a>
     </li>
   </ul>

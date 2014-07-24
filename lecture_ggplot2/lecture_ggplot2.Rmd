@@ -50,7 +50,6 @@ library(gridExtra)
   + Scatter plots
 + Advanced Graphing Tips
   + Annotaton
-  + Dealing with timestamp
   + Facet: Multi-plotting
 + Output
 
@@ -90,6 +89,13 @@ library(gridExtra)
         + `geom_bar()`, `geom_line()`, `geom_point()`, ...
 + Example:
     + `ggplot(data=iris, aes(x=Sepal.Length, y=Sepal.Width)) + geom_point()`
+
+---
+
+## Factor or Numeric?
++ Variable class affects `ggplot`'s behavior
++ Variable class affects `ggplot`'s behavior. Twice.
++ Always check your data.frame (use `str`) before calling `ggplot`
 
 --- .segue .nobackground .dark
 
@@ -645,7 +651,7 @@ symbols
 ---
 
 ## Scatter plot: Grouping with binary variable
-This usually happens accidentally.
+# This usually happens accidentally.
 ```{r,fig.align='center', fig.retina=2, fig.height=5.5, fig.width=9}
 ggplot(movies1, aes(x=budget, y=rating, color=Action)) + geom_point()
 ```
@@ -790,8 +796,78 @@ ggplot(yearcount, aes(x=year, y=title)) + geom_line() +
 
 ---
 
-## Dealing with timetamp
-To be compensated
+## Exercise
+# Which type of film cost the most, averagely?
+```{r,fig.align='center', fig.retina=2, fig.height=5.5, fig.width=10}
+movietype <- colnames(movies)[18:24]
+movies1_singletype <- movies1[rowSums(movies1[, movietype]) == 1,] # remove multi-typed
+# mean(movies1_singletype[movies1_singletype$Animation == 1, 'budget'])
+lmfit <- lm(as.formula(paste('budget ~', paste(movietype, collapse=' + '))), 
+            movies1_singletype)
+summary(lmfit)$coef # where is type 'Short'?
+```
+
+---
+
+## Exercise: Try to plot this!
+# What is the association between cost and rating, conditional on type?
+# (This one is tough!)
+```{r,fig.align='center', fig.retina=2, fig.height=7, fig.width=12, echo=FALSE}
+dummies <- as.matrix(movies1_singletype[, movietype])
+movies1_singletype$Type <- factor(dummies %*% (1:length(movietype)), labels=movietype) 
+ggplot(movies1_singletype, aes(x=budget, y=rating, color=Type)) + 
+  geom_point() +
+  stat_smooth(method=lm, se=FALSE, fullrange=FALSE, size=1.5) +
+  scale_color_discrete(name='Movie Type: # of samples', labels=paste(levels(movies1_singletype$Type), ': ', table(movies1_singletype$Type)))
+```
+
+---
+
+## Exercise: Hint
+# You need to convert multiple dummies into one factor
++ Before:
+```{r,fig.align='center', fig.retina=2, fig.height=5.5, fig.width=10, echo=FALSE}
+dd <- as.matrix(movies1_singletype[, movietype])
+head(dd)
+```
++ After:
+```{r,fig.align='center', fig.retina=2, fig.height=5.5, fig.width=10, echo=FALSE}
+head(factor(dd %*% (1:length(movietype)), labels=movietype))
+```
+
+---
+
+## Exercise: Answer
+```{r,fig.align='center', fig.retina=2, fig.height=8, fig.width=12, eval=FALSE}
+# convert multiple dummies into one factor as grouping var
+# a little matrix operation will do the trick
+dummies <- as.matrix(movies1_singletype[, movietype])
+movies1_singletype$Type <- factor(dummies %*% (1:length(movietype)), labels=movietype)
+
+# The rest of the task is rather simple
+ggplot(movies1_singletype, aes(x=budget, y=rating, color=Type)) + 
+  geom_point() +
+  
+  # set fullrange=T will extend the fitted line outside the sample range
+  stat_smooth(method=lm, se=FALSE, fullrange=FALSE, size=1.5) +
+  
+  # color is the grouping interface, hence scale_color_*
+  scale_color_discrete(name='Movie Type: # of samples', 
+                       labels=paste(levels(movies1_singletype$Type), ': ', 
+                                    table(movies1_singletype$Type)))
+```
+
+---
+
+## Exercise: The regression problem behind the scene
+```{r,fig.align='center', fig.retina=2, fig.height=5.5, fig.width=10}
+interact_terms <- paste(paste(movietype, '*budget', sep=''), collapse=' + ')
+lmfit <- lm(as.formula(paste('rating ~', interact_terms)), movies1_singletype)
+tail(summary(lmfit)$coef)
+```
++ None of the interactive term is statistically significant, indeed
++ **Visualization != Analysis** (Our eyes were not born to work on numbers.)
++ Plots can be easily manipluated to be misleading, accidentally or **on purpose**
 
 --- .segue .nobackground .dark
 
@@ -799,7 +875,60 @@ To be compensated
 
 ---
 
-## Facet
+## Facet: Single grouping
+```{r,fig.align='center', fig.retina=2, fig.height=6.5, fig.width=8, message=FALSE}
+gg <- ggplot(movies1_singletype, aes(x=rating, y=..density..)) + geom_bar()
+gg + facet_grid(Action ~ .) # Plot with grouping variable in different window (Vertical)
+```
+
+---
+
+## Facet: Single grouping
+```{r,fig.align='center', fig.retina=2, fig.height=6.5, fig.width=8, message=FALSE, results='hold'}
+gg + facet_grid(. ~ Action) 
+# Plot with grouping variable in different window (Horizontal)
+```
+
+---
+
+## Facet: Multiple grouping
+```{r,fig.align='center', fig.retina=2, fig.height=5.5, fig.width=8, message=FALSE}
+movies1_singletype$modern <- (movies1_singletype$year > 2000)
+ggplot(movies1_singletype, aes(x=rating, y=..density..)) + 
+  geom_bar() + facet_grid(modern ~ Action)
+```
+
+---
+
+## Facet: Multi-layer grouping
+```{r,fig.align='center', fig.retina=2, fig.height=6, fig.width=8, message=FALSE}
+movies1_singletype$rated <- (movies1_singletype$mpaa != '')
+ggplot(movies1_singletype, aes(x=rating, color=modern)) + 
+  geom_line(stat="density") + facet_grid(Type ~ rated)
+```
+
+---
+
+## Facet: Change labels
++ Way 1: Change the grouping var in data.frame to reflect the alternate labels
++ Way 2: Write customized labeller function for `facet_grid`
+```{r,fig.align='center', fig.retina=2, fig.height=5.5, fig.width=8, message=FALSE}
+print(label_value) # the default labeller plugg in facet_grid(..., labeller)
+mylabeller <- function(variable, value){
+  if ( variable=='rated' ) 
+    value <- ifelse(value == TRUE, 'Rated Movies', 'Unrated Movies')
+  else if ( variable=='Type' ) 
+    as.character(value)
+}
+```
+
+---
+
+## Facet: Change labels
+```{r,fig.align='center', fig.retina=2, fig.height=6.5, fig.width=8, message=FALSE}
+ggplot(movies1_singletype, aes(x=rating, color=modern)) +
+  geom_line(stat="density") + facet_grid(Type ~ rated, labeller=mylabeller)
+```
 
 ---
 
@@ -833,17 +962,17 @@ symbols
 
 ---
 
-## Export your plot
-+ `ggsave`
+## Export your plot as external file
++ `?ggsave`
++ That's it. Period.
 
 ---
 
 ## References
++ [R Graphics Cookbook](http://www.cookbook-r.com/Graphs/)
++ [Source code of this slide](https://github.com/everdark/lecture_ggplot)
+  + The source is tested only on OS X 10.9.3
++ [Introduction to Programming R](https://github.com/everdark/lecture_rintro)
+  + Knowlege of general programming is requisite
 
-+ [R Graphics Cookbook](http://shop.oreilly.com/product/0636920023135.do)
 
----
-
-#ggplot(movies1, aes(x=length)) + geom_bar()
-#ggplot(movies1, aes(x=1L, y=length)) + geom_boxplot()
-#ggplot(movies1, aes(x=factor(Action), y=length)) + geom_boxplot()
