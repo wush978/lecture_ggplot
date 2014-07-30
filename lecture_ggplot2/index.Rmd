@@ -95,7 +95,7 @@ library(gridExtra)
 ## Factor or Numeric?
 + Variable class affects `ggplot`'s behavior
 + Variable class affects `ggplot`'s behavior. Twice.
-+ Always check your data.frame (use `str`) before calling `ggplot`
++ Always check your data.frame (use `str` or `class`) before calling `ggplot`
 
 --- .segue .nobackground .dark
 
