@@ -256,7 +256,7 @@ ggplot(precounted, aes(x=reorder(Species, -Freq), y=Freq)) +
 
 ## Exercise: Working hours by industry?
 ```{r,fig.align='center', fig.retina=2, fig.height=6, fig.width=6, comment=NA, warning=FALSE}
-load('salary.RData')
+data("salary", package="DSC2014Tutorial")
 par(family='Heiti TC Light') # for OS X (XQuartz device)
 hist(salary_2013$平均工時, main=NULL)
 ```
