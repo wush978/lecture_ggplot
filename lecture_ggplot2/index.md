@@ -8,9 +8,10 @@ highlighter : highlight.js  # {highlight.js, prettify, highlight}
 <--!hitheme     : solarized_dark-->
 widgets     : []            # {mathjax, quiz, bootstrap}
 mode        : selfcontained # {standalone, draft}
-github:
+<--!github:
   user: everdark
-  repo: lecture_ggplot
+  repo: lecture_ggplot-->
+license: by-nc-sa
 
 --- &twocol
 
@@ -168,16 +169,10 @@ ggp_bygrp <- ggplot(siris, aes(x=Species, fill=Fat)); ggp_bygrp + geom_bar()
 ## Bar Plot: Dodge by group 
 
 ```r
-ggp_bygrp + geom_bar(position='dodge')
+ggp_bygrp + geom_bar(position='dodge') # ggp_bygrp + geom_bar(position=position_dodge(1))
 ```
 
-<img src="assets/fig/unnamed-chunk-81.png" title="plot of chunk unnamed-chunk-8" alt="plot of chunk unnamed-chunk-8" width="468" style="display: block; margin: auto;" />
-
-```r
-ggp_bygrp + geom_bar(position=position_dodge(1))
-```
-
-<img src="assets/fig/unnamed-chunk-82.png" title="plot of chunk unnamed-chunk-8" alt="plot of chunk unnamed-chunk-8" width="468" style="display: block; margin: auto;" />
+<img src="assets/fig/unnamed-chunk-8.png" title="plot of chunk unnamed-chunk-8" alt="plot of chunk unnamed-chunk-8" width="468" style="display: block; margin: auto;" />
 
 ---
 

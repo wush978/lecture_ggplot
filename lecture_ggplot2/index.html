@@ -37,10 +37,12 @@
     <h2>Using ggplot2</h2>
     <p>Kyle Chung<br/>DSConf 2014 Taipei</p>
   </hgroup>
-    <a href="https://github.com/everdark/lecture_ggplot/zipball/gh-pages" class="example">
-     Download
-    </a>
   <article></article>  
+  <footer class = 'license'>
+    <a href='http://creativecommons.org/licenses/by-nc-sa/3.0/'>
+    <img width = '80px' src = 'http://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png'>
+    </a>
+  </footer>
 </slide>
     
 
@@ -316,15 +318,10 @@ ggp_bygrp &lt;- ggplot(siris, aes(x=Species, fill=Fat)); ggp_bygrp + geom_bar()
     <h2>Bar Plot: Dodge by group</h2>
   </hgroup>
   <article data-timings="">
-    <pre><code class="r">ggp_bygrp + geom_bar(position=&#39;dodge&#39;)
+    <pre><code class="r">ggp_bygrp + geom_bar(position=&#39;dodge&#39;) # ggp_bygrp + geom_bar(position=position_dodge(1))
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-81.png" title="plot of chunk unnamed-chunk-8" alt="plot of chunk unnamed-chunk-8" width="468" style="display: block; margin: auto;" /></p>
-
-<pre><code class="r">ggp_bygrp + geom_bar(position=position_dodge(1))
-</code></pre>
-
-<p><img src="assets/fig/unnamed-chunk-82.png" title="plot of chunk unnamed-chunk-8" alt="plot of chunk unnamed-chunk-8" width="468" style="display: block; margin: auto;" /></p>
+<p><img src="assets/fig/unnamed-chunk-8.png" title="plot of chunk unnamed-chunk-8" alt="plot of chunk unnamed-chunk-8" width="468" style="display: block; margin: auto;" /></p>
 
   </article>
   <!-- Presenter Notes -->
